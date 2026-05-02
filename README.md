@@ -242,7 +242,7 @@ POST /api/analyze
 ```
 ---
 ##  Demo Video Link
-https://youtu.be/t3bN97Y0vDU
+https://drive.google.com/drive/folders/1NnAphraCazeOQsfh8vNWAuu7rAxlEyNx
 
 ---
 ##  Contribution Note
