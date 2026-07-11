@@ -1,0 +1,8 @@
+name: Storesense CI
+on:
+jobs:
+    build:
+        runs-on:
+        steps:
+            - uses: actions/checkout@v4
+        

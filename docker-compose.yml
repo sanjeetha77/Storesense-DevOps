@@ -1,0 +1,24 @@
+services:
+    backend:
+      build:
+        context: ./backend
+        dockerfile: Dockerfile
+      container_name: storesense-backend
+      ports:
+        - "8000:8000"
+      environment:
+      - SHOP_URL=storesense-ai-test.myshopify.com
+      - SHOPIFY_ACCESS_TOKEN=${SHOPIFY_ACCESS_TOKEN}
+      - SHOPIFY_API_VERSION=2024-01
+      - GEMINI_API_KEY=AIzaSyAaimp-4RX5GnuvYAz9mGmdalUOdTcdgVk
+      restart: unless-stopped
+    frontend:
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile
+      container_name: storesense-frontend
+      ports:
+        - "3000:3000"
+      depends_on:
+        - backend
+      restart: unless-stopped
