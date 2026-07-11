@@ -74,3 +74,20 @@ jobs:
                 file: ./backend/Dockerfile
                 push: true
                 tags: ${{ secrets.DOCKER_USERNAME }}/storesense-backend:latest
+    deploy:
+        needs:
+            - docker-frontend
+            - docker-backend
+        runs-on: ubuntu-latest
+        steps:
+            - name: Login to AWS EC2
+              uses: appleboy/ssh-action@v1.2.0
+              with:
+                host: ${{ secrets.EC2_HOST}}
+                username: ${{secrets.EC2_USERNAME}}
+                key: ${{secrets.EC2_SSH_KEY}}
+                script: |
+                    cd ~/storesense
+                    docker compose pull
+                    docker compose up -d --remove-orphans
+                    docker image prune -f
