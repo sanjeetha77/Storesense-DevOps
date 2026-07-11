@@ -34,4 +34,33 @@ jobs:
                 python-version: '3.12'
             - name: Installing python dependencies
               run: pip install -r requirements.txt 
-              
+    docker-frontend:
+        needs: build-frontend
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Setup docker buildx
+              uses: docker/setup-buildx-action@v3
+            - name: build docker action
+              uses: docker/build-push-action@v6
+              with:
+                context: ./frontend
+                file: ./frontend/Dockerfile
+                push: false
+                tags: storesense-frontend:latest
+    docker-backend:
+        needs: build-backend
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Setup Docker buildx
+              uses: docker/setup-buildx-action@v3
+            - name: Build docker action
+              uses: docker/build-push-action@v6
+              with:
+                context: ./backend
+                file: ./backend/Dockerfile
+                push: false
+                tags: storesense-backend:latest
