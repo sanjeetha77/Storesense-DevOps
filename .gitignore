@@ -6,3 +6,11 @@ __pycache__/
 # Node (frontend)
 node_modules/
 .next/
+
+#Terraform
+terraform/.terraform/
+.tfstate
+*.tfstate.*
+.log
+.env
+.terraform.tfvars
