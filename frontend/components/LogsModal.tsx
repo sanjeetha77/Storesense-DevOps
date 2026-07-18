@@ -16,7 +16,8 @@ export function LogsModal({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
 
   const fetchLogs = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/logs");
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${apiBase}/api/logs`);
       if (!res.ok) throw new Error("Failed to fetch logs");
       const data = await res.json();
       
