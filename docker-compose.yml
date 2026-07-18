@@ -8,7 +8,7 @@ services:
       - SHOP_URL=storesense-ai-test.myshopify.com
       - SHOPIFY_ACCESS_TOKEN=${SHOPIFY_ACCESS_TOKEN}
       - SHOPIFY_API_VERSION=2024-01
-      - GEMINI_API_KEY=AIzaSyAaimp-4RX5GnuvYAz9mGmdalUOdTcdgVk
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
       restart: unless-stopped
     frontend:
       image: "sanj7/storesense-frontend:latest"
