@@ -87,7 +87,11 @@ jobs:
                 username: ${{secrets.EC2_USERNAME}}
                 key: ${{secrets.EC2_SSH_KEY}}
                 script: |
-                    cd ~/storesense
+                    cd ~/Storesense-DevOps
+                    git fetch origin
+                    git reset --hard origin/main
+                    echo "SHOPIFY_ACCESS_TOKEN=${{ secrets.SHOPIFY_ACCESS_TOKEN }}" > .env
+                    echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
                     docker compose pull
                     docker compose up -d --remove-orphans
                     docker image prune -f
